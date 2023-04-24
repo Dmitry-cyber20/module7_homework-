@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/myscript.js"></script>
+    <title>Практическая работа по JavaScript</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="title">Практическая работа по JavaScript №3</h1>
+        <p class="subtitle">Модуль 7. Объекты.<br>Анисимов Дмитрий</p>
+        <div class="item-wrapp">
+            <div class="example_item">
+                <p class="example-title">
+                    Задача №1
+                </p>
+                <p class="example-subtitle">
+                    Написать, функцию, которая принимает в качестве аргумента объект 
+                    и выводит в консоль все ключи и значения только собственных свойств.
+                    Данная функция не должна возвращать значение.
+                </p>
+                <div class="answer-wrapp">
+                    <p class="answer">
+                        Решение: 
+                    </p>
+                </div>
+                <div class="code-wrapp">
+                    <code>
+                        const userNew = {<br>
+                            Имя: 'Дмитрий',<br>
+                            Фамилия: 'Анисимов',<br>
+                            Возраст: '41'<br>
+                           }
+                          Object.getOwnPropertyNames(userNew).forEach(function(ident) {<br>
+                            console.log(ident + ': ' + userNew[ident]);<br>
+                          });<br>
+                    </code>
+                </div>
+            </div>
+            <div class="example_item">
+                <p class="example-title">
+                    Задача №2
+                </p>
+                <p class="example-subtitle">
+                    Написать функцию, которая принимает в качестве аргументов строку 
+                    и объект, а затем проверяет есть ли у переданного объекта свойство 
+                    с данным именем. Функция должна возвращать true или false.
+                </p>
+                <div class="answer-wrapp">
+                    <p class="answer">
+                        Решение: 
+                    </p>
+                </div>
+                <div class="code-wrapp">
+                    <code>
+                        function showDetails(obj, objKeyName) {<br>
+                            return (objKeyName in obj);<br>
+                        }<br>
+                        const userNew = {<br>
+                            name: "Дмитрий",<br> 
+                            ownCity: "Казань",<br>
+                            age: 41,<br>
+                            course: "Frontend"<br>
+                          };<br>
+                          console.log(showDetails(userNew, "surname"));<br>
+                          console.log(showDetails(userNew, "name"));<br>
+                    </code>
+                </div>
+            </div>
+            <div class="example_item">
+                <p class="example-title">
+                    Задача №3
+                </p>
+                <p class="example-subtitle">
+                    Написать функцию, которая создает пустой объект, но без прототипа.
+                </p>
+                <div class="answer-wrapp">
+                    <p class="answer">
+                        Решение: 
+                    </p>
+                </div>
+                <div class="code-wrapp">
+                    <code>
+                        function createEmptyObject () {<br>
+                        return Object.create(null);<br>
+                        }<br>
+                        const obj = createEmptyObject();<br>
+                        console.log(obj);<br>
+                        console.log(Object.getPrototypeOf(obj));<br>
+                    </code>
+                </div>
+            </div>
+            <div class="example_item">
+                <p class="example-title">
+                    Задача №4
+                </p>
+                <p class="example-subtitle">
+                    Реализуйте следующее консольное приложение подобно примеру, 
+                    который разбирался в видео. Реализуйте его на прототипах.
+                    Определите иерархию электроприборов. Включите некоторые в розетку. 
+                    Посчитайте суммарную потребляемую мощность всех включенных приборов 
+                    (передайте аргумент).
+                    Таких приборов должно быть как минимум два (например, настольная лампа 
+                    и компьютер). Выбрав прибор, подумайте, какими свойствами он обладает.
+                </p>
+                <div class="answer-wrapp">
+                    <p class="answer">
+                        Решение: 
+                    </p>
+                </div>
+                <div class="code-wrapp">
+                    <code>
+                        function ElectricalAppliance(name) {<br>
+                            this.device = ' Electrical device',<br>
+                            this.name = name<br>                         
+                        }<br>                  
+                        ElectricalAppliance.prototype.getPowerExpense = function (power, time, on) {<br>
+                            let turnOn = on;<br>
+                            if(on === 1){<br>
+                                turnOn = 'Вкл';<br>
+                            }else{<br>
+                                turnOn = 'Выкл';<br>
+                            };<br>
+                            console.log(`Расход эл. энергии ${this.name} за ${time} час. = ${power * time}Вт. ${this.name}: ${turnOn}`);};<br>
+                        function Specification(name, color) {<br>
+                            this.name = name,<br>
+                            this.color = color<br>
+                        }<br>
+                        Specification.prototype = new ElectricalAppliance();<br>                  
+                        const kettle = new Specification ('Чайник', 'Белый');<br>
+                        const laptop = new Specification ('Ноутбук', 'Чёрный');<br>
+                        const lamp = new Specification ('Лампочка', 'Красный');<br>             
+                        console.log(kettle, laptop, lamp);<br>
+                        kettle.getPowerExpense(200, 2);<br>
+                        laptop.getPowerExpense(100, 2, 1);<br>
+                        lamp.getPowerExpense(50, 2, 1);<br>
+                    </code>
+                </div>
+            </div>
+              <!-- Сделано до №5 -->
+            <div class="example_item">
+                <p class="example-title">
+                    Задача №5
+                </p>
+                <p class="example-subtitle">
+                    Переписать консольное приложение из предыдущего юнита на классы.
+                </p>
+                <div class="answer-wrapp">
+                    <p class="answer">
+                        Решение: 
+                    </p>
+                </div>
+                <div class="code-wrapp">
+                    <code>
+                        class ElectricalAppliance {<br>
+                            constructor(name) {<br>
+                                this.device = 'Electrical device';<br>
+                                this.name = name;<br>
+                            }<br>
+                            getPowerExpense (power, time, on) {<br>
+                                let turnOn = on;<br>
+                                if(on === 1){<br>
+                                    turnOn = 'Вкл';<br>
+                                }else{<br>
+                                    turnOn = 'Выкл';<br>
+                                };<br>
+                                console.log(`Расход эл. энергии ${this.name} - (${this.color}) за ${time} час. = ${power * time}Вт. ${this.name}: ${turnOn}`);<br>
+                            }<br>
+                        }<br>
+                        class Specification extends ElectricalAppliance {<br>
+                            constructor (name, color) {<br>
+                                super(name);<br>
+                                this.color = color;<br>
+                            }<br>
+                        }<br>
+                        const kettle = new Specification ('Чайник', 'Белый');<br>
+                        const laptop = new Specification ('Ноутбук', 'Чёрный');<br>
+                        const lamp = new Specification ('Лампочка', 'Красный');<br>
+                        
+                        console.log(kettle, laptop, lamp);<br>
+                        kettle.getPowerExpense(200, 2);<br>
+                        laptop.getPowerExpense(100, 2, 1);<br>
+                        lamp.getPowerExpense(50, 2, 1);<br>
+                    </code>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
